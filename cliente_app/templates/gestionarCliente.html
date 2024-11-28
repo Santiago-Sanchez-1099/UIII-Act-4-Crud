@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h1>Registrar Cliente</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="registrarCliente/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="num_id_cliente" name="num_id_cliente" class="form-control" placeholder="ID cliente" minlength="1" maxlength="11" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombres" name="txt_nombres" class="form-control" placeholder="Nombres del cliente" maxlength="50" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_apellidos" name="txt_apellidos" class="form-control" placeholder="Apellidos del cliente" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="txt_email" name="txt_email" class="form-control" placeholder="Email del cliente" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="txt_password" name="txt_password" class="form-control" placeholder="Contraseña del cliente" minlength="1" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_telefono" name="txt_telefono" class="form-control" placeholder="Teléfono del cliente" maxlength="15" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_direccion" name="txt_direccion" class="form-control" placeholder="Dirección del cliente" maxlength="200" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-warning">Guardar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de clientes</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID cliente</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Dirección</th>
+                    <th> Opciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in misclientes %}
+                <tr>
+                    <td>{{c.id_cliente}}</td>
+                    <td>{{c.nombres}}</td>
+                    <td>{{c.apellidos}}</td>
+                    <td>{{c.email}}</td>
+                    <td>{{c.telefono}}</td>
+                    <td>{{c.direccion}}</td>
+                    <td><a href="seleccionarCliente/{{c.id_cliente}}" class="btn btn-info">Editar</a></td>
+                    <td><a href="borrarCliente/{{c.id_cliente}}" class="btn btn-danger">Borrar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

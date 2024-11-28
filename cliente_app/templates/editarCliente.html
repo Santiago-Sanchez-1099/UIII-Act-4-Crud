@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Cliente</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarCliente/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-3">
+                        <input type="text" id="num_id_cliente" name="num_id_cliente" class="form-control" value="{{ misclientes.id_cliente }}" readonly><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombres" name="txt_nombres" class="form-control" value="{{ misclientes.nombres }}" maxlength="50" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_apellidos" name="txt_apellidos" class="form-control" value="{{ misclientes.apellidos }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="txt_email" name="txt_email" class="form-control" value="{{ misclientes.email }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="txt_password" name="txt_password" class="form-control" value="{{ misclientes.password }}" minlength="1" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_telefono" name="txt_telefono" class="form-control" value="{{ misclientes.telefono }}" maxlength="15" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_direccion" name="txt_direccion" class="form-control" value="{{ misclientes.direccion }}" maxlength="200" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-warning">Guardar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
