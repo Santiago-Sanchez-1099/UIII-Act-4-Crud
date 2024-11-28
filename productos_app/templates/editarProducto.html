@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- Fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Producto</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+              <form action="/editarProducto/" method="POST"> {% csrf_token %}
+
+                <div class="form-group py-3">
+                    <input type="text" id="num_id_producto" name="num_id_producto" class="form-control" placeholder="ID producto" value="{{ misproductos.id_producto }}" readonly>
+                </div>
+      <div class="form-group">
+          <input type="text" id="txt_nombre_producto" name="txt_nombre_producto" class="form-control" value="{{misproductos.nombre_producto}}" maxlength="50" required><br>
+      </div>
+      <div class="form-group">
+        <input type="text" id="txt_descripcion" name="txt_descripcion" class="form-control" value="{{misproductos.descripcion}}" maxlength="100" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="num_stock" name="num_stock" class="form-control" value="{{misproductos.stock}}" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="num_precio" name="num_precio" class="form-control" value="{{misproductos.precio}}" required><br>
+    </div>
+    <div class="form-group">
+        <input type="date" id="date_fecha_ingreso" name="date_fecha_ingreso" class="form-control" value="{{misproductos.fecha_ingreso}}" required><br>
+    </div>
+      <div class="form-group">
+          <input type="text" id="num_id_categoria" name="num_id_categoria" class="form-control" value="{{misproductos.id_categoria}}" minlength="1" maxlength="11" required><br>
+      </div>
+      <div class="form-group py-2">
+        <button type="submit" class="btn btn-warning">Guardar Producto</button>
+      </div>
+              </form>
+            </div>
+          </div>
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- Fila en editar -->
+
+{% endblock %}

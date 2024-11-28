@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--La fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--Columna izquierda-->
+        <h1>Registrar Venta</h1>
+        <div class="card"> <!-- La tarjeta -->
+  <div class="card-body">
+    <form action="registrarVenta/" method="POST"> {% csrf_token %}
+
+
+
+
+      <div class="form-group">
+          <input type="text" id="num_id_venta" name="num_id_venta" class="form-control" placeholder="ID venta" minlength="1" maxlength="11" required><br>
+      </div>
+      <div class="form-group">
+          <input type="date" id="date_fecha_venta" name="date_fecha_venta" class="form-control" placeholder="Fecha de venta" required><br>
+      </div>
+      <div class="form-group">
+        <input type="text" id="txt_producto" name="txt_producto" class="form-control" placeholder="Producto de la venta" maxlength="50" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="num_cantidad" name="num_cantidad" class="form-control" placeholder="Cantidad de venta" maxlength="5" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="num_total" name="num_total" class="form-control" placeholder="Total de venta" maxlength="20" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="txt_metodo_pago" name="txt_metodo_pago" class="form-control" placeholder="Método de pago de venta" maxlength="20" required><br>
+    </div>
+      <div class="form-group">
+          <input type="text" id="num_id_producto" name="num_id_producto" class="form-control" placeholder="ID producto" minlength="1" maxlength="11" required><br>
+      </div>
+      <div class="form-group">
+        <input type="text" id="num_id_empleado" name="num_id_empleado" class="form-control" placeholder="ID empleado" minlength="1" maxlength="11" required><br>
+    </div>
+    <div class="form-group">
+      <input type="text" id="num_id_cliente" name="num_id_cliente" class="form-control" placeholder="ID cliente" minlength="1" maxlength="11" required><br>
+  </div>
+      <div class="form-group py-2">
+        <button type="submit" class="btn btn-warning">Guardar Venta</button>
+      </div>
+
+
+
+
+
+    </form>
+  </div>
+</div>
+    </div><!--Columna izquierda-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--Columna derecha-->
+        <h1>Listado de ventas</h1>
+        <!--Tablas-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID venta</th>
+            <th scope="col">Fecha de venta</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total</th>
+            <th scope="col">Método de pago</th>
+            <th scope="col">ID producto</th>
+            <th scope="col">ID empleado</th>
+            <th scope="col">ID cliente</th>
+
+            <th> Opciones </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for v in misventas %}
+          <tr>
+            <td> {{v.id_venta}}</td>
+            <td> {{v.fecha_venta}}</td>
+            <td> {{v.producto}}</td>
+            <td> {{v.cantidad}}</td>
+            <td> {{v.total}}</td>
+            <td> {{v.metodo_pago}}</td>
+            <td> {{v.id_producto}}</td>
+            <td> {{v.id_empleado}}</td>
+            <td> {{v.id_cliente}}</td>
+
+            <td> <a href="seleccionarVenta/{{v.id_venta}}" class="btn btn-info"> Editar</a></td>
+            <td> <a href="borrarVenta/{{v.id_venta}}" class="btn btn-danger"> Borrar</a></td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!--Tabla-->
+    </div><!--Columna derecha-->
+    
+</div><!--La fila-->
+
+{% endblock %}

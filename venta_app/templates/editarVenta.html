@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- Fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Venta</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+              <form action="/editarVenta/" method="POST"> {% csrf_token %}
+
+                <div class="form-group py-3">
+                    <input type="text" id="num_id_venta" name="num_id_venta" class="form-control" placeholder="ID venta" value="{{ misventas.id_venta }}" readonly>
+                </div>
+      <div class="form-group">
+          <input type="date" id="date_fecha_venta" name="date_fecha_venta" class="form-control" value="{{misventas.fecha_venta}}" required><br>
+      </div>
+      <div class="form-group">
+        <input type="text" id="txt_producto" name="txt_producto" class="form-control" value="{{misventas.producto}}" maxlength="50" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="num_cantidad" name="num_cantidad" class="form-control" value="{{misventas.cantidad}}" maxlength="5" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="num_total" name="num_total" class="form-control" value="{{misventas.total}}" maxlength="20" required><br>
+    </div>
+    <div class="form-group">
+        <input type="text" id="txt_metodo_pago" name="txt_metodo_pago" class="form-control" value="{{misventas.metodo_pago}}" maxlength="20" required><br>
+    </div>
+      <div class="form-group">
+          <input type="text" id="num_id_producto" name="num_id_producto" class="form-control" value="{{misventas.id_producto}}" minlength="1" maxlength="11" required><br>
+      </div>
+      <div class="form-group">
+        <input type="text" id="num_id_empleado" name="num_id_empleado" class="form-control" value="{{misventas.id_empleado}}" minlength="1" maxlength="11" required><br>
+    </div>
+    <div class="form-group">
+      <input type="text" id="num_id_cliente" name="num_id_cliente" class="form-control" value="{{misventas.id_cliente}}" minlength="1" maxlength="11" required><br>
+  </div>
+      <div class="form-group py-2">
+        <button type="submit" class="btn btn-warning">Guardar Venta</button>
+      </div>
+              </form>
+            </div>
+          </div>
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- Fila en editar -->
+
+{% endblock %}

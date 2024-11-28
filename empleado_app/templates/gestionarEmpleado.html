@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- La fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- Columna izquierda -->
+        <h1>Registrar Empleado</h1>
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="registrarEmpleado/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="num_id_empleado" name="num_id_empleado" class="form-control" placeholder="ID empleado" minlength="1" maxlength="11" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombres" name="txt_nombres" class="form-control" placeholder="Nombres del empleado" maxlength="50" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_apellidos" name="txt_apellidos" class="form-control" placeholder="Apellidos del empleado" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="txt_email" name="txt_email" class="form-control" placeholder="Email del empleado" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="txt_password" name="txt_password" class="form-control" placeholder="Contraseña del empleado" minlength="1" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_puesto" name="txt_puesto" class="form-control" placeholder="Puesto del empleado" maxlength="50" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="date_fecha_registro" name="date_fecha_registro" class="form-control" placeholder="Fecha de registro" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-warning">Guardar Empleado</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- Columna izquierda -->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!-- Columna derecha -->
+        <h1>Listado de empleados</h1>
+        <!-- Tablas -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID empleado</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Fecha de registro</th>
+                    <th> Opciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in misempleados %}
+                <tr>
+                    <td> {{e.id_empleado}}</td>
+                    <td> {{e.nombres}}</td>
+                    <td> {{e.apellidos}}</td>
+                    <td> {{e.email}}</td>
+                    <td> {{e.puesto}}</td>
+                    <td> {{e.fecha_registro}}</td>
+                    <td> <a href="seleccionarEmpleado/{{e.id_empleado}}" class="btn btn-info"> Editar</a></td>
+                    <td> <a href="borrarEmpleado/{{e.id_empleado}}" class="btn btn-danger"> Borrar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Tabla -->
+    </div><!-- Columna derecha -->
+</div><!-- La fila -->
+
+{% endblock %}
